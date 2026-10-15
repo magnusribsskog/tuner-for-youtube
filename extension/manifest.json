@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Tuner for YouTube",
+  "version": "1.0.0",
+  "description": "Filters low-effort videos from the YouTube homepage: phrases, slop, all-caps titles, channel flooding and watched videos. Self-healing, local-only, clown mode included.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Tuner for YouTube"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["self-healing.js", "instantiator.js", "clown.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
